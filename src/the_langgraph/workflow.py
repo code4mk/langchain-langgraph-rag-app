@@ -1,6 +1,6 @@
 from langgraph.graph import StateGraph
-from the_langgraph.state import MovieState
-from the_langgraph.nodes import Nodes
+from .state import MovieState
+from .nodes import Nodes
 
 class Workflow:
     def __init__(self):
@@ -11,7 +11,7 @@ class Workflow:
         nodes = Nodes()
         
         # Add nodes to the workflow with associated methods
-        workflow.add_node('research_movie', nodes.research_movie)  # Set as the starting node
+        workflow.add_node('research_movie', nodes.research_movie)
         workflow.add_node('analysis_movie', nodes.analysis_movie)
         
         # Define the edges between nodes

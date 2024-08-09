@@ -30,9 +30,9 @@ class Nodes:
         )
         
         research_chain = research_template | self.llm
-        movie_info = research_chain.invoke({"question": state['question'], "context": context})
-        
-        state['research_output'] = movie_info.content
+        ai_msg = research_chain.invoke({"question": state['question'], "context": context})
+        response = ai_msg.content
+        state['research_output'] = response
         return state
     
     def analysis_movie(self, state: MovieState):
@@ -61,7 +61,7 @@ class Nodes:
         )
         
         analysis_chain = analysis_template | self.llm
-        analysis_result = analysis_chain.invoke({"movie_info": state['research_output'], "context": analysis_context})
-        
-        state['analysis_output'] = analysis_result.content
+        ai_msg = analysis_chain.invoke({"movie_info": state['research_output'], "context": analysis_context})
+        response = ai_msg.content
+        state['analysis_output'] = response
         return state
