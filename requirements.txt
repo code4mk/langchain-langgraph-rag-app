@@ -8,5 +8,7 @@ gradio
 lark
 langchainhub
 
-crewai
 langgraph
+crewai
+crewai-tools
+chainlit
