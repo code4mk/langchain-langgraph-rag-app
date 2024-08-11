@@ -9,6 +9,5 @@ lark
 langchainhub
 
 langgraph
-crewai
-crewai-tools
 chainlit
+termcolor

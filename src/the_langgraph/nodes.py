@@ -1,6 +1,7 @@
 from langchain.prompts import PromptTemplate
 from langchain.schema.runnable import RunnableSequence
 from typing import Dict
+from termcolor import colored
 
 from .utils import get_openai_llm, get_pinecone_vectorstore
 from .state import MovieState
@@ -32,7 +33,9 @@ class Nodes:
         research_chain = research_template | self.llm
         ai_msg = research_chain.invoke({"question": state['question'], "context": context})
         response = ai_msg.content
+        
         state['research_output'] = response
+        print(colored(f"Researcher 👩🏿‍💻: {response}", 'cyan'))
         return state
     
     def analysis_movie(self, state: MovieState):
@@ -63,5 +66,7 @@ class Nodes:
         analysis_chain = analysis_template | self.llm
         ai_msg = analysis_chain.invoke({"movie_info": state['research_output'], "context": analysis_context})
         response = ai_msg.content
+        
         state['analysis_output'] = response
+        print(colored(f"analyst 🧑🏼‍💻: {response}", 'green'))
         return state
